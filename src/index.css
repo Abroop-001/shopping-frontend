@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+    line-height: 1.15;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  input, button, select, textarea { font-family: inherit; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-surface-3; }
+  ::-webkit-scrollbar-thumb { @apply bg-ink-5 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-ink-4; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 rounded-lg select-none cursor-pointer;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-surface px-5 py-2.5 text-sm hover:bg-ink-2 active:scale-[0.98];
+  }
+  .btn-accent {
+    @apply btn bg-accent text-ink px-5 py-2.5 text-sm font-semibold hover:bg-accent-dark active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply btn border border-ink-5 text-ink px-5 py-2.5 text-sm hover:border-ink hover:bg-surface-2 active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn text-ink px-3 py-2 text-sm hover:bg-surface-2 active:scale-[0.98] rounded-md;
+  }
+  .btn-icon {
+    @apply btn w-10 h-10 rounded-full hover:bg-surface-2 active:scale-[0.98];
+  }
+
+  .input-base {
+    @apply w-full border border-surface-4 rounded-lg px-4 py-2.5 text-sm text-ink bg-surface placeholder:text-ink-4 focus:outline-none focus:border-ink transition-colors duration-200;
+  }
+
+  .section-padding { @apply py-16 lg:py-24; }
+  .container-base { @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+  .card-base {
+    @apply bg-surface rounded-2xl border border-surface-4 overflow-hidden transition-all duration-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  .badge-new { @apply badge bg-accent text-ink; }
+  .badge-sale { @apply badge bg-ink text-surface; }
+  .badge-bestseller { @apply badge bg-surface-4 text-ink-2; }
+
+  .divider { @apply border-t border-surface-4; }
+
+  .nav-link {
+    @apply text-sm font-medium text-ink-3 hover:text-ink transition-colors duration-200;
+  }
+  .nav-link-active { @apply nav-link text-ink; }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply bg-surface-3 rounded animate-pulse;
+    background: linear-gradient(90deg, #f0f0ef 25%, #e8e8e7 50%, #f0f0ef 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Product card */
+  .product-card {
+    @apply card-base hover:shadow-card-hover cursor-pointer;
+  }
+  .product-card:hover .product-card-image {
+    @apply scale-105;
+  }
+  .product-card:hover .product-card-actions {
+    @apply opacity-100 translate-y-0;
+  }
+  .product-card-image {
+    @apply transition-transform duration-500 ease-out;
+  }
+  .product-card-actions {
+    @apply opacity-0 translate-y-2 transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
